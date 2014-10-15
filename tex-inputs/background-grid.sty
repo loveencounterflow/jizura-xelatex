@@ -1,0 +1,25 @@
+% \usepackage{tikz}
+% \usepackage{eso-pic}
+% \usetikzlibrary{backgrounds}
+% \AddToShipoutPicture{%
+%     \begin{tikzpicture}[overlay,remember picture]
+%         % \draw[thick,red]
+%         %       (current page.north east)
+%         %       rectangle (current page.south west);
+%         % \begin{pgfonlayer}{background}
+%         \draw[red!5!white,thin,opacity=0.3]
+%              (current page.south west) grid[step=1mm]
+%              (current page.north east);
+%         \draw[red!15!white,opacity=0.3]
+%              (current page.south west) grid[step=5mm]
+%              (current page.north east);
+%         \draw[red!30!white,opacity=0.3]
+%              (current page.south west) grid[step=10mm]
+%              (current page.north east);
+%         % \end{pgfonlayer}
+%     \end{tikzpicture}%
+% }
+
+
+\usepackage{pagegrid}
+\usepackage{showframe}

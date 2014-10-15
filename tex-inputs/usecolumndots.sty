@@ -1,0 +1,41 @@
+
+% % http://tex.stackexchange.com/a/120701/28067
+% \makeatletter
+% \def\columnseprulecolor\vrule\@width\columnseprule{%
+% \vbox to \ht\mult@rightbox{\kern1mm\leaders\vbox{\kern0.5mm\hbox{.}\kern0mm}\vfill}}
+% \makeatother
+% \setlength\columnsep{5mm}
+
+% http://tex.stackexchange.com/a/120701/28067
+\usepackage{multicol}
+\usepackage{calc}
+\setlength{\tabcolsep}{0mm}
+
+\newlength{\TABLEMARGIN}
+\setlength{\TABLEMARGIN}{85mm}
+
+\def\STRUT{\rule[-0.3em]{0.1ex}{1.2em}}
+\makeatletter
+\def\USECOLUMNDOTS{
+\expandafter\def\columnseprulecolor\vrule\@width\columnseprule{%
+\vbox to \ht\mult@rightbox{\kern1mm\leaders\vbox{\kern0.5mm\hbox{.}\kern0mm}\vfill}}}
+\makeatother
+\setlength\columnsep{5mm}
+
+\newenvironment{DOTTEDCOLUMNS}[1]{\begin{minipage}[b]{\linewidth-5mm}%
+\USECOLUMNDOTS%
+\begin{multicols}{#1}\STRUT}
+{\STRUT\end{multicols}\end{minipage}}
+
+\newenvironment{CONTAINERLEFT}{\begin{minipage}[b]{\linewidth-5mm}\begin{flushleft}\STRUT}%
+{\STRUT\end{flushleft}\end{minipage}}
+
+\newenvironment{CONTAINERCENTER}{\begin{minipage}[b]{\linewidth-5mm}\begin{center}\STRUT}%
+{\STRUT\end{center}\end{minipage}}
+
+\newenvironment{CONTAINERRIGHT}{\begin{minipage}[b]{\linewidth-5mm}\begin{flushright}\hfill\STRUT}%
+{\STRUT\end{flushright}\end{minipage}}
+
+\newenvironment{CONTAINERJUSTIFIED}{\begin{minipage}[b]{\linewidth-5mm}\STRUT}%
+{\STRUT\end{minipage}}
+
