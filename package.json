@@ -14,7 +14,7 @@
     "coffeenode-trm": "~0.1.6"
   },
   "dependencies": {
-    "coffee-script": "~1.6.2",
+    "coffee-script": "^1.8.0",
     "coffeenode-types": "~0.1.0"
   },
   "larq": {

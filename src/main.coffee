@@ -21,8 +21,8 @@ CHR                       = require 'coffeenode-chr'
 read                      = ( route ) -> return njs_fs.readFileSync ( njs_path.join __dirname, route ), 'utf-8'
 #...........................................................................................................
 TEX                       = require 'coffeenode-tex'
-route_of_preamble         = '../tex-inputs/jizura-dictionary-preamble.tex'
-route_of_postscript       = '../tex-inputs/jizura-dictionary-postscript.tex'
+route_of_preamble         = '../tex-inputs/jzr2014-preamble.tex'
+route_of_postscript       = '../tex-inputs/jzr2014-postscript.tex'
 
 
 #===========================================================================================================
@@ -79,7 +79,9 @@ route_of_postscript       = '../tex-inputs/jizura-dictionary-postscript.tex'
   else
     rsg = chr_info[ 'rsg' ]
   tag = @glyph_tag_by_rsg[ rsg ]
-  throw new Error "unknown RSG #{rpr rsg}" unless tag?
+  unless tag?
+    warn "unknown RSG #{rpr rsg}"
+    return chr_info[ 'chr' ]
   return tag chr_info[ 'chr' ]
 
 ############################################################################################################
@@ -154,7 +156,7 @@ route_of_postscript       = '../tex-inputs/jizura-dictionary-postscript.tex'
 ############################################################################################################
 MULTIMIX = require 'coffeenode-multimix'
 THIS = module.exports = MULTIMIX.compose TEX, @
-# @rpr                      = TEX.rpr.bind TEX
+@rpr                      = TEX.rpr.bind TEX
 
 #...........................................................................................................
 THIS.postscript               = THIS.raw read route_of_postscript
