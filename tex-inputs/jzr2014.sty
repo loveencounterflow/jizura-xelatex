@@ -1,59 +1,81 @@
 
-% needs XeLaTeX
+% ==========================================================================================================
+%
+%      d8b                   .d8888b.   .d8888b.   d888       d8888
+%      Y8P                  d88P  Y88b d88P  Y88b d8888      d8P888
+%                                  888 888    888   888     d8P 888
+%     8888 88888888 888d888      .d88P 888    888   888    d8P  888
+%     "888    d88P  888P"    .od888P"  888    888   888   d88   888
+%      888   d88P   888     d88P"      888    888   888   8888888888
+%      888  d88P    888     888"       Y88b  d88P   888         888
+%      888 88888888 888     888888888   "Y8888P"  8888888       888
+%      888
+%     d88P
+%   888P"
+%
+% ==========================================================================================================
 
-
-
-\ProvidesPackage{jizuradictionary}
+\ProvidesPackage{jzr2014}
 
 
 % ==========================================================================================================
 % Unicode and CJK Handling
 % ----------------------------------------------------------------------------------------------------------
 \usepackage{fontspec}
-\usepackage{xeCJK}
 % \usepackage{/home/flow/own/tex-packages/xeCJK-2.4.6-r306/xeCJK}
 \usepackage{leading}
-\usepackage{/Users/flow/JIZURA/flow/dictionary/tex-inputs/utils}
+\usepackage{/Volumes/Storage/io/jizura-xelatex/tex-inputs/utils}
 % \usepackage{/Users/flow/JIZURA/flow/dictionary/tex-inputs/accentbx/accentbx}
 \usepackage{cxltx-style-accentbox}
-% \usepackage{/Volumes/Storage/cnd/node_modules/jizura-xelatex/tex-inputs/background-grid}
-% \usepackage{tabu}
+\usepackage{cxltx-style-trm}
+\usepackage{cxltx-style-pushraise}
 \usepackage{pbox}
 \usepackage{array}
-% \usepackage{leading}
-% \usepackage{fancyhdr}
+% \let\footruleskip\undefined\usepackage{fancyhdr}
 \usepackage{fixltx2e}
-\usepackage{multicol}
-\usepackage[usenames,dvipsnames,svgnames,table,x11names]{xcolor}
+% \usepackage[usenames,dvipsnames,svgnames,table,x11names]{xcolor}
 
 % ==========================================================================================================
 % Nifty stuff
 % ----------------------------------------------------------------------------------------------------------
-\usepackage{float}
-\usepackage{wrapfig}
-\usepackage{enumitem}
+% \usepackage{float}
+% \usepackage{wrapfig}
+% \usepackage{enumitem}
 % \usepackage[protrusion=true,final]{/home/flow/own/tex-packages/microtype/microtype} % doesn't work yet
 % \usepackage[protrusion=true,final]{microtype} % doesn't work yet
 \newcommand{\insertblankpage}{\thispagestyle{empty}\mbox{}\newpage}
+
+% thx to http://tex.stackexchange.com/a/11709/28067
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
 
 % ==========================================================================================================
 % CJK Glyph Bullets
 % ----------------------------------------------------------------------------------------------------------
 
-\usepackage{tikz}
-\newcommand*\circled[1]{\tikz[baseline=(char.base),line width=0.25mm,blue]{
-            \node[shape=circle,draw,inner sep=0.25mm] (char) {#1};}}
+% \usepackage{tikz}
+% \newcommand*\circled[1]{\tikz[baseline=(char.base),line width=0.25mm,blue]{
+%             \node[shape=circle,draw,inner sep=0.25mm] (char) {#1};}}
 
-% ==========================================================================================================
-% Drop Caps
-% ----------------------------------------------------------------------------------------------------------
-\usepackage{lettrine}
-\setcounter{DefaultLines}{2}
-\renewcommand{\DefaultLoversize}{-0.0}
-\renewcommand{\DefaultLraise}{0.1}
-\renewcommand{\DefaultLhang}{0.07}
-\setlength{\DefaultFindent}{0.5em}
-\setlength{\DefaultNindent}{0.0em}
+% \usepackage{pstricks}
+% \newcommand\circled[1]{%
+%   \pscirclebox[boxsep=true]{\makebox[]{}\slash{#1}}%
+%   }
+
+
+
+% % ==========================================================================================================
+% % Drop Caps
+% % ----------------------------------------------------------------------------------------------------------
+% \usepackage{lettrine}
+% \setcounter{DefaultLines}{2}
+% \renewcommand{\DefaultLoversize}{-0.0}
+% \renewcommand{\DefaultLraise}{0.1}
+% \renewcommand{\DefaultLhang}{0.07}
+% \setlength{\DefaultFindent}{0.5em}
+% \setlength{\DefaultNindent}{0.0em}
 
 % ==========================================================================================================
 % General Document Style
@@ -64,87 +86,13 @@
 \setlength{\parskip}{\baselineskip}
 \setlength{\parindent}{0pt}
 
+\usepackage{jzr2014-fonts}
+% \usepackage{xeCJK}
+% \setmainfont[Mapping=tex-text]{EB Garamond 12 Regular}
+% % \setCJKmainfont{Sun-ExtA}
+% \setCJKmainfont{EB Garamond 12 Regular}
+% % \newCJKfontfamily\missingFont[Scale=1.10,Color=red]{Sun-ExtA}
 
-% ==========================================================================================================
-% Font Usage
-% ----------------------------------------------------------------------------------------------------------
-% gotta figure out how to get proper ligatures,
-% maybe just do replacements in the source (but that will affect line breaking / hyphenation):
-% \setmainfont{gentium2-regular}
-% \setmainfont[Mapping=tex-text,Path=/home/flow/own/resources/fonts/]{EBGaramond12-Regular.otf}
-\setmainfont[Mapping=tex-text]{EB Garamond 12 Regular}
-% \newfontfamily\glossFont{gentium2-italic}
-% ..........................................................................................................
-% \setCJKmainfont{Droid Sans Japanese}
-\setCJKmainfont{Sun-ExtA}
-% \setCJKmainfont[Path=/home/flow/own/resources/fonts/]{EBGaramond12-Regular.otf}
-% ..........................................................................................................
-\newfontfamily\latinBoldFont{Ubuntu Bold}
-\newfontfamily\ttFont[Scale=0.8]{Flow DejaVu Sans Mono}
-\newfontfamily\tinyTtFont[Scale=0.5]{Flow DejaVu Sans Mono}
-% \newfontfamily\scFont[Path=/home/flow/own/resources/fonts/]{EBGaramond12-SC.otf}
-\newfontfamily\scFont{EB Garamond 12 Regular SmallCaps}
-\newfontfamily\ttboldFont{DejaVu Sans Mono Bold}
-% ..........................................................................................................
-\newCJKfontfamily\cjkIdeographFont[Scale=1.05,AutoFakeBold=2]{Sun-ExtA}
-\newCJKfontfamily\cjkxbIdeographFont[Scale=1.05,AutoFakeBold=1]{sunflower-u-cjk-xb}
-% \newCJKfontfamily\cjkxcIdeographFont[Scale=1.05,AutoFakeBold=1]{BabelStone Han} % ??????????????????????
-\newCJKfontfamily\cjkxcIdeographFont[Scale=1.05,AutoFakeBold=1]{HanaMinB} % ??????????????????????
-\newCJKfontfamily\cjksymIdeographFont[Scale=1.05,AutoFakeBold=1]{HanaMinA}
-\newCJKfontfamily\cjkxdIdeographFont[Scale=1.05,AutoFakeBold=1]{BabelStone Han}
-\newfontfamily\jzrFont[Scale=1.05,AutoFakeBold=1]{jizura3a}
-% \newfontfamily\pinyinFont[Scale=0.8,Path=/usr/share/fonts/truetype/ubuntu-font-family/]{Ubuntu-C.ttf}
-\newfontfamily\pinyinFont[Scale=0.8]{Ubuntu}
-\newfontfamily\pinyinItalicFont[Scale=0.8]{Ubuntu Italic}
-\newCJKfontfamily\katakanaFont[Scale=0.95,AutoFakeBold=0]{NanumMyeongjo}
-\newCJKfontfamily\hiraganaFont[Scale=0.95,AutoFakeBold=1]{NanumMyeongjo}
-\newCJKfontfamily\hangeulFont[Scale=1.05,AutoFakeBold=1]{NanumMyeongjo}
-\newfontfamily\glossFont[Mapping=tex-text]{EB Garamond 12 Regular}
-% ..........................................................................................................
-% \newfontfamily\narrowFont{Futura Condensed Medium}
-% \newfontfamily\narrowFont{Ubuntu Condensed}
-% \newfontfamily\narrowFont{Didot}
-% \newfontfamily\narrowFont{Letter Gothic Std}
-% \newfontfamily\narrowFont{Plantagenet Cherokee}% !!!!!!!! mediaeval numerals
-\newfontfamily\narrowFont{PT Sans Narrow}% looks nice
-% \newfontfamily\narrowFont{Liberation Sans Narrow}
-% ..........................................................................................................
-\newCJKfontfamily\missingFont[Scale=1.05,AutoFakeBold=1,Color=red]{Sun-ExtA}
-
-% ==========================================================================================================
-% Display Styles
-% ----------------------------------------------------------------------------------------------------------
-\newcommand{\cjkInterchrSpacing}{\hskip -0.4pt plus 3pt minus 1pt}
-% \newcommand{\adjustCjkIdeograph}[1]{\cjkInterchrSpacing\lower0.3ex\hbox{\textbf{#1}}}
-% \newcommand{\adjustKatakana}[1]{\cjkInterchrSpacing\lower0.5ex\hbox{\textbf{#1}}}
-% \newcommand{\adjustHiragana}[1]{\cjkInterchrSpacing\lower0.5ex\hbox{\textbf{#1}}}
-% \newcommand{\adjustHangeul}[1]{\cjkInterchrSpacing\lower0.3ex\hbox{\textbf{#1}}}
-\newcommand{\adjustCjkIdeograph}[1]{\cjkInterchrSpacing\lower0.3ex\hbox{#1}}
-\newcommand{\adjustKatakana}[1]{\cjkInterchrSpacing\lower0.3ex\hbox{#1}}
-\newcommand{\adjustHiragana}[1]{\cjkInterchrSpacing\lower0.3ex\hbox{#1}}
-\newcommand{\adjustHangeul}[1]{\cjkInterchrSpacing\lower0.3ex\hbox{#1}}
-% ..........................................................................................................
-\newcommand{\py}[1]{{\pinyinFont#1}}
-\newcommand{\gloss}[1]{{\glossFont#1}}
-\newcommand{\cn}[1]{\adjustCjkIdeograph{\cjkIdeographFont#1}}
-\newcommand{\cnxa}[1]{\adjustCjkIdeograph{\cjkIdeographFont#1}}
-\newcommand{\cnxb}[1]{\adjustCjkIdeograph{\cjkxbIdeographFont#1}}
-\newcommand{\cnxc}[1]{\adjustCjkIdeograph{\cjkxcIdeographFont#1}}
-\newcommand{\cnxd}[1]{\adjustCjkIdeograph{\cjkxdIdeographFont#1}}
-\newcommand{\cncone}[1]{\adjustCjkIdeograph{\cjkIdeographFont#1}} % CJK Compatibility 1
-\newcommand{\cnctwo}[1]{\adjustCjkIdeograph{\cjkxcIdeographFont#1}} % CJK Compatibility 2
-\newcommand{\cnrone}[1]{\adjustCjkIdeograph{\cjkIdeographFont#1}}   % CJK Radicals 1
-\newcommand{\cnrtwo}[1]{\adjustCjkIdeograph{\cjkIdeographFont#1}}   % CJK Radicals 2
-% \newcommand{\cnsym}[1]{\adjustCjkIdeograph{\cjkIdeographFont#1}}
-\newcommand{\cnsym}[1]{\adjustCjkIdeograph{\cjksymIdeographFont#1}}
-\newcommand{\cnstrk}[1]{\adjustCjkIdeograph{\cjkIdeographFont#1}}
-\newcommand{\cnjzr}[1]{\adjustCjkIdeograph{\jzrFont#1}}
-\newcommand{\cnextra}[1]{\adjustCjkIdeograph{\cjkxcIdeographFont#1}}
-\newcommand{\ka}[1]{\adjustKatakana{\katakanaFont#1}}
-\newcommand{\hi}[1]{\adjustHiragana{\hiraganaFont#1}}
-\newcommand{\hg}[1]{\adjustHangeul{\hangeulFont#1}}
-% ..........................................................................................................
-\newcommand{\missing}[1]{\missingFont#1}
 
 % ==========================================================================================================
 % Extras
@@ -156,7 +104,7 @@
 
 % ----------------------------------------------------------------------------------------------------------
 \newcommand{\jzrpagenumber}[1]{%
-  {\pinyinFont #1}%
+  \py{#1}%
   }%
 
 % ----------------------------------------------------------------------------------------------------------
@@ -164,19 +112,19 @@
   {\pinyinItalicFont #1}%
   }%
 
-% ..........................................................................................................
-\makepagestyle{jzrshapeclasses}
-\makeevenhead{jzrshapeclasses}{\jzrpagenumber{\thepage}}{\jzrpagenumber{Shapeclasses}}{}
-\makeoddhead{jzrshapeclasses}{}{\jzrpagenumber{Shapeclasses}}{\jzrpagenumber{\thepage}}
-% ..........................................................................................................
-\makepagestyle{jzrguideindex}
-\makeevenhead{jzrguideindex}{\jzrpagenumber{\thepage}}{\jzrpagenumber{Guides}}{}
-\makeoddhead{jzrguideindex}{}{\jzrpagenumber{Guides}}{\jzrpagenumber{\thepage}}
-% ..........................................................................................................
-\makepagestyle{jzrmainpart}
-\makeevenhead{jzrmainpart}{\jzrpagenumber{\thepage}}{\jzrpagenumber{Characters}}{}
-\makeoddhead{jzrmainpart}{}{\jzrpagenumber{Characters}}{\jzrpagenumber{\thepage}}
-% ..........................................................................................................
+% % ..........................................................................................................
+% \makepagestyle{jzrshapeclasses}
+% \makeevenhead{jzrshapeclasses}{\jzrpagenumber{\thepage}}{\jzrpagenumber{Shapeclasses}}{}
+% \makeoddhead{jzrshapeclasses}{}{\jzrpagenumber{Shapeclasses}}{\jzrpagenumber{\thepage}}
+% % ..........................................................................................................
+% \makepagestyle{jzrguideindex}
+% \makeevenhead{jzrguideindex}{\jzrpagenumber{\thepage}}{\jzrpagenumber{Guides}}{}
+% \makeoddhead{jzrguideindex}{}{\jzrpagenumber{Guides}}{\jzrpagenumber{\thepage}}
+% % ..........................................................................................................
+% \makepagestyle{jzrmainpart}
+% \makeevenhead{jzrmainpart}{\jzrpagenumber{\thepage}}{\jzrpagenumber{Characters}}{}
+% \makeoddhead{jzrmainpart}{}{\jzrpagenumber{Characters}}{\jzrpagenumber{\thepage}}
+% % ..........................................................................................................
 
 % ----------------------------------------------------------------------------------------------------------
 % \newcommand{\fncr}[2]{%
@@ -226,9 +174,9 @@
   }
 % ..........................................................................................................
 \newcommand{\usageCode}[2]{%
-  {\fontsize{2.25mm}{2mm}\leading{2mm}\ttFont\lower0.6ex\vbox{\hbox{#1}\hbox{#2}}}}
-\newcommand{\usageCodeB}[2]{%
-  {\fontsize{2.25mm}{2mm}\leading{2mm}\ttboldFont\lower0.6ex\vbox{\hbox{#1}\hbox{#2}}}}
+  {\fontsize{2.25mm}{2mm}\leading{2mm}\jzrFontUbuntu\lower0.6ex\vbox{\hbox{#1}\hbox{#2}}}}
+\newcommand{\usageCodeBold}[2]{%
+  {\fontsize{2.25mm}{2mm}\leading{2mm}\jzrFontUbuntuBold\lower0.6ex\vbox{\hbox{#1}\hbox{#2}}}}
 
 
 % ==========================================================================================================
@@ -241,19 +189,15 @@
 \newdimen\gridstrutwidth
 \newdimen\gridstrutdepth
 \newdimen\gridstrutlength
-\nominalfontsize=4.5mm
-\gridstrutheight=4.25mm
-\gridstrutwidth=0mm
-\gridstrutdepth=2.25mm
+\nominalfontsize=5.0mm
+\gridstrutheight=6.25mm
+\gridstrutwidth=1mm
+\gridstrutdepth=1.25mm
 \gridstrutlength=\dimexpr\gridstrutheight+\gridstrutdepth
 \newcommand{\gridstrut}{{\color{blue}\vrule height\gridstrutheight width\gridstrutwidth depth\gridstrutdepth}}
 % \newcommand{\gridstrut}{}
 % \newcommand{\gridstrut}{{\color{blue}\rule[\gridstrutdepth]{\gridstrutwidth}{\gridstrutlength}}}
 
-\setlength{\multicolsep}{\gridstrutlength}
-\setlength{\columnsep}{1mm}
-\setlength{\columnseprule}{0.15mm}
-% \setlength{\multicolovershoot}{0mm}
 
 
 % ==========================================================================================================
@@ -269,10 +213,46 @@
   \topskip=0pt%
   \setlength{\parskip}{0mm}%
   \setlength{\parindent}{0mm}%
-  \fontsize{\nominalfontsize}{\gridstrutlength}%
-  \leading{\gridstrutlength}}%
+  % for most fonts:
+  % \fontsize{1.028914507\nominalfontsize}{1.028914507\gridstrutlength}%
+  % \leading{1.028914507\gridstrutlength}}%
+  % for Kaiti:
+  \fontsize{1.2\nominalfontsize}{1.2\gridstrutlength}%
+  \leading{1.2\gridstrutlength}}%
 % end
   {\par}
+
+% jzrliangfang
+\newenvironment{jzrliangfang}{%
+% ..........................................................................................................
+% begin
+  % thx to http://www.tug.org/TUGboat/tb28-1/tb88bazargan.pdf for the next two settings:
+  \lineskiplimit=-10pt%
+  \lineskip=0pt%
+  \topskip=0pt%
+  \setlength{\parskip}{0mm}%
+  \setlength{\parindent}{0mm}%
+  \fontsize{2\nominalfontsize}{2\gridstrutlength}%
+  \leading{2\gridstrutlength}}%
+% end
+  {}
+  % {\par}
+
+% jzrshuangfang
+\newenvironment{jzrshuangfang}{%
+% ..........................................................................................................
+% begin
+  % thx to http://www.tug.org/TUGboat/tb28-1/tb88bazargan.pdf for the next two settings:
+  \lineskiplimit=-10pt%
+  \lineskip=0pt%
+  \topskip=0pt%
+  \setlength{\parskip}{0mm}%
+  \setlength{\parindent}{0mm}%
+  \fontsize{4\nominalfontsize}{4\gridstrutlength}%
+  \leading{4\gridstrutlength}}%
+% end
+  {}
+  % {\par}
 
 % ----------------------------------------------------------------------------------------------------------
 \newcommand{\emphasizeguide}[1]{%
@@ -289,56 +269,23 @@
 % ==========================================================================================================
 % BASE LINE GRID
 % ----------------------------------------------------------------------------------------------------------
-\newcommand{\showbaselinegrid}{
-  \usepackage{atbegshi,picture,xcolor}
-  \AtBeginShipout{%
-    \AtBeginShipoutUpperLeft{%
-      \color{red}%
-      \put(\dimexpr 1in+\oddsidemargin,
-           -\dimexpr 1in+\topmargin+\headheight+\headsep+\topskip-\gridstrutdepth-1.255mm)%
-        {%
-         \vtop to\dimexpr\vsize+0mm{
-           \hrule
-           \leaders\vbox to \gridstrutlength{\hrule height0.1pt width\hsize\vfill}\vfill
-         }}}}}
+% \newcommand{\showbaselinegrid}{
+%   \usepackage{atbegshi,picture,xcolor}
+%   \AtBeginShipout{%
+%     \AtBeginShipoutUpperLeft{%
+%       \color{red}%
+%       \put(\dimexpr 1in+\oddsidemargin,
+%            -\dimexpr 1in+\topmargin+\headheight+\headsep+\topskip-\gridstrutdepth-1.255mm)%
+%         {%
+%          \vtop to\dimexpr\vsize+0mm{
+%            \hrule
+%            \leaders\vbox to \gridstrutlength{\hrule height0.1pt width\hsize\vfill}\vfill
+%          }}}}}
 
 
 
-% ==========================================================================================================
-% PAGE SIZE
-% ----------------------------------------------------------------------------------------------------------
-% original
-\usepackage[
-  left=20mm,
-  right=10mm,
-  top=8mm,
-  bottom=12mm,
-  headsep=1mm,
-  footskip=5mm,
-  marginparsep=1mm,
-  marginparwidth=14mm,
-  headheight=5mm,
-  includehead,
-  includefoot,
-  paperwidth=210mm,
-  paperheight=297mm]{geometry}
-% experimental
-% \usepackage[
-%   left=10mm,
-%   right=10mm,
-%   top=30mm,
-%   bottom=10mm,
-%   headsep=1mm,
-%   footskip=5mm,
-%   marginparsep=1mm,
-%   marginparwidth=14mm,
-%   headheight=5mm,
-%   includehead,
-%   includefoot,
-%   % paperwidth=110mm,
-%   paperwidth=155mm,
-%   paperheight=297mm]{geometry}
-\newcommand*{\mainentry}[1]{#1\markboth{#1}{#1}}
+
+% \newcommand*{\mainentry}[1]{#1\markboth{#1}{#1}}
 
 
 % ==========================================================================================================
@@ -368,6 +315,12 @@
 %     \end{tikzpicture}}}}}%
 %     \end{center}
 %   }
+
+% % \newcommand{\Huge}[1]{#1}
+% \newcommand{\HUGE}[1]{#1}
+% % \newcommand{\LARGE}[1]{#1}
+
+
 \newcommand*{\jzrtitle}{\begingroup% AW, Design of Books
 \pagestyle{empty}
 \centering
@@ -475,6 +428,27 @@
 % % \fancyhead[LE,RO]{\leftmark}
 % % \fancyhead[LO,RE]{\rightmark}
 
+\newcommand{\paTopLeftSizeMinusOne}[3]{%
+  \paTopLeft{#1}{#2}{%
+    \fontsize{0.9\nominalfontsize}{0.714\gridstrutlength}\leading{0.714\gridstrutlength}%
+    \paGauge{天地玄黃宇宙洪荒日月盈昃辰宿列張}%
+    #3}}%
+
+\newcommand{\paTopLeftSizeTwo}[3]{%
+  \paTopLeft{#1}{#2}{%
+    \fontsize{2.5\nominalfontsize}{2.5\gridstrutlength}\leading{2.5\gridstrutlength}%
+    \paGauge{天地玄黃宇宙洪荒日月盈昃辰宿列張}%
+    #3}}%
+\newcommand{\paTopLeftSizeThree}[3]{%
+  \paTopLeft{#1}{#2}{%
+    \fontsize{4.2\nominalfontsize}{4.2\gridstrutlength}\leading{4.2\gridstrutlength}%
+    \paGauge{天地玄黃宇宙洪荒日月盈昃辰宿列張}%
+    #3}}%
+\newcommand{\paTopLeftSizeFour}[3]{%
+  \paTopLeft{#1}{#2}{%
+    \fontsize{5.6\nominalfontsize}{5.6\gridstrutlength}\leading{5.6\gridstrutlength}%
+    \paGauge{天地玄黃宇宙洪荒日月盈昃辰宿列張}%
+    #3}}%
 
 
 

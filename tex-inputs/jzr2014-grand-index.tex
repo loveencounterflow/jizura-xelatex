@@ -1,0 +1,167 @@
+
+% ==========================================================================================================
+%
+%   .d8888b.  8888888b.         d8888 888b    888 8888888b.
+%  d88P  Y88b 888   Y88b       d88888 8888b   888 888  "Y88b
+%  888    888 888    888      d88P888 88888b  888 888    888
+%  888        888   d88P     d88P 888 888Y88b 888 888    888
+%  888  88888 8888888P"     d88P  888 888 Y88b888 888    888
+%  888    888 888 T88b     d88P   888 888  Y88888 888    888
+%  Y88b  d88P 888  T88b   d8888888888 888   Y8888 888  .d88P
+%   "Y8888P88 888   T88b d88P     888 888    Y888 8888888P"
+%
+%  8888888 888b    888 8888888b.  8888888888 Y88b   d88P
+%    888   8888b   888 888  "Y88b 888         Y88b d88P
+%    888   88888b  888 888    888 888          Y88o88P
+%    888   888Y88b 888 888    888 8888888       Y888P
+%    888   888 Y88b888 888    888 888           d888b
+%    888   888  Y88888 888    888 888          d88888b
+%    888   888   Y8888 888  .d88P 888         d88P Y88b
+%  8888888 888    Y888 8888888P"  8888888888 d88P   Y88b
+%
+% ==========================================================================================================
+% \renewcommand{\cnxc}[1]{\typeout{\trmSolOrange{#1}}{\jzrFontHanaMinB#1}}
+\renewcommand{\cnxd}[1]{\typeout{\trmSolBlue{#1}}{\jzrFontBabelstoneHan#1}}
+
+% ----------------------------------------------------------------------------------------------------------
+\usepackage[
+  % showframe,
+  left=15mm,
+  right=15mm,
+  top=15mm,
+  headsep=0mm,
+  headheight=0mm,
+  bottom=12mm,
+  footskip=5mm,
+  marginparsep=1mm,
+  marginparwidth=14mm,
+  includehead,
+  includefoot,
+  paperwidth=210mm,
+  paperheight=297mm%
+  ]{geometry}
+
+% ----------------------------------------------------------------------------------------------------------
+\usepackage{multicol}
+\setlength{\multicolsep}{\gridstrutlength}
+\setlength{\columnsep}{1mm}
+\setlength{\columnseprule}{0.15mm}
+% \setlength{\multicolovershoot}{0mm}
+
+% ----------------------------------------------------------------------------------------------------------
+\newenvironment{grandindex}{%
+% ..........................................................................................................
+% begin
+  \begin{flushleft}
+  \fontsize{1\nominalfontsize}{1\gridstrutlength}%
+  \leading{1\gridstrutlength}%
+  \topskip=0pt%
+  \setlength{\parskip}{0mm}%
+  \setlength{\parindent}{0mm}%
+  % thx to http://www.tug.org/TUGboat/tb28-1/tb88bazargan.pdf for the next two settings:
+  \lineskiplimit=-10pt%
+  \lineskip=0pt}%
+% end
+  {\par
+  \end{flushleft}}
+
+% ----------------------------------------------------------------------------------------------------------
+% \jzrFontBabelstoneHan
+% \jzrFontHanaMinA
+% \jzrFontHanaMinB
+% \jzrFontNanumMyeongjo
+% \jzrFontSunflowerXA
+% \jzrFontSunflowerXB
+
+% \usepackage{cxltx-style-convert-to}
+
+% \makeatletter
+% \newcommand{\cvFsizeMm}{\ctConvertTo{mm}{\f@size pt}mm}
+
+% % \def\cvCenter{\@ifstar\@@cvCenter\@cvCenter}
+% \newdimen\cv@TextWidth
+
+% % \newcommand{\@cvCenter}[1]{%
+% %   % {\setlength{\fboxsep}{0mm}\fbox{\parbox[c][\@fsize][c]{\@fsize}{#1}}}%
+% %   {\parbox[c][\f@size pt][c]{\f@size pt}{#1}}%
+% %   }
+
+% % \newcommand{\@@cvCenter}[1]{%
+% \newcommand{\cvCenter}[1]{%
+%   {\settowidth{\cv@TextWidth}{#1}\parbox[c]{\cv@TextWidth}{#1}}%
+%   }
+
+
+
+% \makeatletter
+
+% \newdimen\cv@Height
+% \newdimen\cv@WidthA
+% \newdimen\cv@WidthB
+
+% \newcommand{\cvRaise}[2]{%
+%   \setlength{\cv@Height}{\f@size pt}%
+%   \raisebox{#1\cv@Height}{#2}%
+%   }
+
+% \newcommand*{\cvPush}[2]{%
+%   \settowidth{\cv@WidthA}{#2}%
+%   \setlength{\cv@WidthB}{\f@size pt}%
+%   \makebox[\cv@WidthA]{\hspace*{#1\cv@WidthB}#2}%
+% }
+
+% \newcommand{\cvPushRaise}[3]{%
+%   \cvPush{#1}{\cvRaise{#2}{#3}}%
+%   }
+
+% % \newcommand*{\cvPush}[2]{%
+% %   \settowidth{\cv@WidthA}{#2}%
+% %   \makebox[\cv@WidthA]{\hspace*{#1}#2}%
+% % }
+
+% \makeatother
+
+% ----------------------------------------------------------------------------------------------------------
+\begin{document}
+
+
+x\par x\par x\par
+
+
+\begin{grandindex}
+
+\prFsizeMm
+
+helo World \prCenter{h}\prCenter{e}\prCenter{l}\prCenter{o}\prCenter{ }\prCenter{W}\prCenter{o}\prCenter{r}\prCenter{l}\prCenter{d}
+
+{\jzrFontSunflowerXA 國}{\jzrFontSunflowerXA 一}
+
+{\jzrFontSunflowerXA 國}{\jzrFontSunflowerXA 一}\cn{一}\cn{國}
+
+\cnxb{𣡷}\prRaise{-0.125}{\cn{覀}}\prRaise{-0.0625}{\cnjzr{}}\prRaise{-0.125}{\cnxb{𥫗}}\cnxb{𣡷}\cn{覀}\cnjzr{}\cnxb{𥫗}
+
+\cn{龍}\cn{亻}\cn{龍}\cn{龍}\prPush{0.5}{\cn{亻}}\cn{龍}\prPushRaise{0.5}{0.5}{\cn{亻}}\cn{龍}\prPushRaise{0.5}{0.25}{\cn{。}}\cn{龍}
+
+% \cn{龍}\prRaise{-0.05}{\cnjzr{}}\cn{龍}\prRaise{-0.05}{\cnjzr{}}\cn{龍}\prRaise{-0.05}{\cnjzr{}}\cn{龍}\prRaise{-0.05}{\cnjzr{}}\cn{龍}\prRaise{-0.05}{\cnjzr{}}\cn{龍}\prRaise{-0.05}{\cnjzr{}}\cn{龍}
+
+\cn{龍}\cnjzr{}\cn{龍}\cnjzr{}\cn{龍}\cnjzr{}\cn{龍}\cnjzr{}\cn{龍}\cnjzr{}\cn{龍}\cnjzr{}\cn{龍}
+
+宀爫牜犭⺀衤冫彳刂罒饣⺍讠氵龴丷䒑冖𠂉⻗
+
+龍灬龍，龍\prRaise{0.25}{灬}龍
+
+龍覀龍，龍\prRaise{-0.125}{覀}龍
+
+龍亻龍，龍\prPush{0.5}{亻}龍
+
+龍。龍，龍\prPushRaise{0.5}{0.25}{。}龍
+
+
+
+#{content}
+
+% ----------------------------------------------------------------------------------------------------------
+\end{grandindex}
+\end{document}
+
+

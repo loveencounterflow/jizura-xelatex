@@ -1,0 +1,234 @@
+
+
+% \documentclass[a4paper,twoside]{memoir}
+\usepackage{jzr2014}
+% \usepackage{cxltx}
+\usepackage{cxltx-style-pushraise}
+
+\newdimen\jzrDictGridstrutheight
+\newdimen\jzrDictGridstrutwidth
+\newdimen\jzrDictGridstrutdepth
+\newdimen\jzrDictGridstrutlength
+\nominalfontsize=3.5mm
+% \def\jzrGridstrutRatio=
+% \jzrDictGridstrutlength=4.66667mm
+\jzrDictGridstrutlength=4.6667mm
+\jzrDictGridstrutheight=0.7\jzrDictGridstrutlength
+\jzrDictGridstrutdepth=0.3\jzrDictGridstrutlength
+\jzrDictGridstrutwidth=1mm
+% \jzrDictGridstrutheight=3mm
+% \jzrDictGridstrutdepth=1.67mm
+% \jzrDictGridstrutlength=\dimexpr\jzrDictGridstrutheight+\jzrDictGridstrutdepth
+\newcommand{\jzrDictGridstrut}{{\color{blue}\vrule height\jzrDictGridstrutheight width\jzrDictGridstrutwidth depth\jzrDictGridstrutdepth}}
+% \newcommand{\gridstrut}{}
+% \newcommand{\gridstrut}{{\color{blue}\rule[\gridstrutdepth]{\gridstrutwidth}{\gridstrutlength}}}
+
+
+\newenvironment{jzr2014dictionaryLemmata}{%
+% ..........................................................................................................
+% begin
+  % thx to http://www.tug.org/TUGboat/tb28-1/tb88bazargan.pdf for the next two settings:
+  % \lineskiplimit=-10pt%
+  % \lineskip=0pt%
+  % \topskip=0pt%
+  \setlength{\parskip}{0mm}%
+  \setlength{\parindent}{0mm}%
+  % for most fonts:
+  % \fontsize{1.028914507\nominalfontsize}{1.028914507\gridstrutlength}%
+  % \leading{1.028914507\gridstrutlength}}%
+  % for Kaiti:
+  \fontsize{\nominalfontsize}{0.75\jzrDictGridstrutlength}%
+  \leading{\jzrDictGridstrutlength}}%
+  % \fontsize{1.2\nominalfontsize}{1.2\gridstrutlength}%
+  % \leading{1.2\gridstrutlength}}%
+% end
+  {\par}
+
+% ##########################################################################################################
+\usepackage{cxltx-style-pagegrid}
+\pgSetup{top-left,step=\jzrDictGridstrutlength,arrows=false}
+% \pgSetup{top-left,step=7mm,arrows=false}
+
+
+% ----------------------------------------------------------------------------------------------------------
+\usepackage[
+  % asymmetric,% see http://tex.stackexchange.com/a/42051/28067
+  % showframe,%
+  left=1mm,%
+  right=1mm,%
+  top=0mm,%
+  headsep=0mm,%
+  headheight=0mm,%
+  bottom=0mm,%
+  footskip=0mm,%
+  marginparsep=0mm,%
+  marginparwidth=0mm,%
+  paperwidth=21mm,%
+  paperheight=14mm%
+  ]{geometry}
+
+% ##########################################################################################################
+% Make LaTeX tolerate bad spacing
+% ----------------------------------------------------------------------------------------------------------
+% see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=overfull
+% ----------------------------------------------------------------------------------------------------------
+% \pretolerance=150
+\tolerance=250
+\setlength{\emergencystretch}{2em}
+% \widowpenalties 1 10000
+\raggedbottom
+% ##########################################################################################################
+
+
+% \newcommand{\XXX}[1]{\jzrDictGridstrut\zsavepos{#1start123}}
+% \newcommand{\aux}[1]{\immediate\write\@auxout{#1}}
+% \newcommand{\auxcs}[1]{\immediate\write\@auxout{% coffee #1}}
+% \newcommand{\auxpod}[2]{\immediate\write\@auxout{% coffee #1: \{ #2 \}}}
+% \newcommand{\XXX}[1]{:\zsavepos{#1xy}}
+% \makeatletter
+% \catcode`\%=11
+% \newcommand{\auxc}[1]{\immediate\write\@auxout{% #1}}
+% \catcode`\%=14
+% \makeatother
+% \newcommand{\jzrSavePos}[1]{\zsavepos{#1}\auxc{#1 p\thepage}}
+
+\usepackage[user,abspage,savepos]{zref}
+
+% \newcommand{\jzrSavePositions}[2]{%
+%   \zsavepos{#1start}\zref{#1xstart}\auxc{\zref[abspage]{#1xstart} #1start p\thepage}%
+%   #2%
+%   \zsavepos{#1stop}\zref{#1xstop}\auxc{\zref[abspage]{#1xstop} #1stop p\thepage}%
+%   }
+
+\setlength{\fboxsep}{0.5mm}
+\setlength{\fboxrule}{0.15mm}
+\renewcommand{\usageCode}[1]{%
+  {\framebox{\jzrFontUbuntu#1}}}
+
+\newcommand{\jzrSavePositions}[2]{%
+  \zlabel{#1startpage}% \zsavepos{#1startxy}% start (x,y) always top left
+  #2%
+  \zlabel{#1stoppage}\zsavepos{#1stopxy}%
+  }
+
+% \newcommand{\jzrSavePositions}[2]{%
+%   \zsavepos{#1start}\auxc{#1start p\thepage}%
+%   #2%
+%   \zsavepos{#1stop}\auxc{#1stop p\thepage}%
+%   }
+
+
+% ##########################################################################################################
+%
+% ----------------------------------------------------------------------------------------------------------
+% thx to David Carlisle once more: http://tex.stackexchange.com/a/202245/28067 answering the question,
+% "Insert a character at beginning of each line after the current one?"
+% ----------------------------------------------------------------------------------------------------------
+\makeatletter
+%http://tex.stackexchange.com/questions/107726/how-to-get-the-natural-width-of-the-last-box-in-a-paragraph/107727#107727
+\def\lastlinelength{%
+{\abovedisplayshortskip\z@\abovedisplayskip\z@
+    \belowdisplayshortskip\z@\belowdisplayskip\z@
+$$\global\dimen\@ne\dimexpr\predisplaysize-2em\relax
+ \xdef\tmp{%
+      \predisplaysize\the\predisplaysize
+      \prevgraf\the\prevgraf\relax}%
+$$\vskip\dimexpr-\parskip-\baselineskip\relax}\tmp}
+
+% The code for the start of  environment
+\newcommand{\jzrBeforeEachLine}[2]{\XXX{#1}%
+\lastlinelength
+% save the depth of the previous line (Normally
+% TeX uses this automatically but would lose the
+% informatiom due to the boxing/reboxing)
+\dimen0\prevdepth
+% Save the prefix text from `#1` in box 0.
+% In this version make it red, probably real code
+% should not do that and should just have `#1` you
+% could always add colour or font changes in the argument.
+\setbox0\hbox{\XXX{#1}}%
+% start saving the paragraph in box 2
+% \setbox2\vbox\bgroup\bgroup\vskip94sp
+\setbox2\vbox\bgroup\bgroup\vskip70sp
+% by resetting the prevdepth to the saved value
+% Tex will automatically insert glue to maintain even spacing
+% before the first line.
+\prevdepth\dimen0
+% Reduce the width for line breaking by the width of box 0 to allow for
+% the insertion of the prefix string later.
+\advance\hsize-\wd0
+% end of begin environment code
+\noindent\vadjust{\penalty123}\kern\dimen1 #2%
+% close off the saving of box 2 started above.
+\endgraf\egroup\egroup
+% So at those point box 2 contains the body of the environment
+% with lines broken to a short line length.
+%
+% Clear box 1 ready to start collecting the modified lines
+\global\setbox1\vbox{}%
+% Use unbox box2 (onto itself)
+\setbox2\vbox{%
+\unvbox2
+\global\setbox5\lastbox
+\unskip
+% at this point we are at the end of box 2 now
+% loop backwards up the vertical list copying glue and penalties
+% but modifying boxes to add the prefix.
+\loop
+%
+% an e-tex primitive that reports the last item in the vertical list.
+% type 1 is a box, so remove the box (a line of text) and then
+% put into box 1 a box that is this box together with the prefix which
+% was saved in box 0
+\ifnum\lastnodetype=1
+\global\setbox3\lastbox
+\global\setbox1\vbox{%
+\hbox{\copy0\box3}%
+\unvbox1}%
+\fi
+%
+% type 11 is glue so remove it from this list and add
+% equivalent glue to box 1
+\ifnum\lastnodetype=11
+\skip0\lastskip\unskip
+\global\setbox1\vbox{\vskip\skip0\unvbox1}%
+\fi
+%
+% same for penalty
+\ifnum\lastnodetype=13
+\count0\lastpenalty\unpenalty
+\ifnum\count0=123
+\setbox0\hbox{}%
+\else
+\global\setbox1\vbox{\penalty\count0 \unvbox1}%
+\fi
+\fi
+%
+% other node types are not handled here: either they won't happen
+% or they can't be removed anyway so would break the loop \special
+% for example would be bad.
+%
+% -1 means the vertical list is empty: we have reached the top of the box.
+\ifnum\lastnodetype=-1
+\else
+\repeat}%
+% Tip the modified box back onto the main list for the page, unbox
+% it so that page breaking may still happen (if it could happen in the
+% original context).
+\vskip-\baselineskip
+\unvbox1
+\noindent \XXX{#1}\unhbox5\unskip\unskip\XXX{#1}%
+}
+\makeatother
+% ##########################################################################################################
+
+
+% ----------------------------------------------------------------------------------------------------------
+\pagestyle{empty}
+\begin{document}
+\begin{jzr2014dictionaryLemmata}
+
+#{content}
+
+\end{jzr2014dictionaryLemmata}
+\end{document}

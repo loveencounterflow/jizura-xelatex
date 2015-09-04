@@ -1,0 +1,447 @@
+
+
+
+
+
+
+% ==========================================================================================================
+%
+%
+%
+% 888    d8P  888       888 8888888  .d8888b.     888       888 8888888b.         d8888 8888888b.
+% 888   d8P   888   o   888   888   d88P  Y88b    888   o   888 888   Y88b       d88888 888   Y88b
+% 888  d8P    888  d8b  888   888   888    888    888  d8b  888 888    888      d88P888 888    888
+% 888d88K     888 d888b 888   888   888           888 d888b 888 888   d88P     d88P 888 888   d88P
+% 8888888b    888d88888b888   888   888           888d88888b888 8888888P"     d88P  888 8888888P"
+% 888  Y88b   88888P Y88888   888   888    888    88888P Y88888 888 T88b     d88P   888 888
+% 888   Y88b  8888P   Y8888   888   Y88b  d88P    8888P   Y8888 888  T88b   d8888888888 888
+% 888    Y88b 888P     Y888 8888888  "Y8888P"     888P     Y888 888   T88b d88P     888 888
+%
+% Key Words In Context, a.k.a. permuted index
+%
+%
+% ==========================================================================================================
+% \renewcommand\cn{\jzrFontCwKai}
+% \renewcommand\cn{\jzrFontCwHei}
+% \renewcommand\cn{\jzrFontCwFangsong}
+% \renewcommand\cn{\jzrFontCwMing}
+% ----------------------------------------------------------------------------------------------------------
+% \usepackage{cxltx}
+\usepackage{cxltx-style-base}
+\usepackage{cxltx-style-hyphenation-tolerance}
+\usepackage{cxltx-style-oddeven}
+\usepackage{cxltx-style-position-absolute}
+\usepackage{cxltx-style-pushraise}
+\usepackage{cxltx-style-smashbox}
+% \usepackage{cxltx-style-solarized}
+% \usepackage{cxltx-style-trm}
+% % \usepackage{picinpar}
+% \usepackage{/Volumes/Storage/downloads/picins/picins}
+% \pichskip{1mm}% horizontal distance between midashi glyph and entry text
+\usepackage{multirow}
+
+% ----------------------------------------------------------------------------------------------------------
+% \newcommand{\minheightparbox}[1]{%
+%   \sbox{0}{\hbadness=10001\parbox{\columnwidth}{\hfuzz=\maxdimen{}#1}}%
+%   \ifdim\dimexpr\ht0+\dp0<14mm%
+%   \dp0\dimexpr14mm-\ht0\fi%
+%   % \fbox{\usebox{0}}%
+%   \usebox{0}%
+% }
+% \newdimen\foobarlength
+% \newcommand{\foobar}[1]{%
+%   \zsaveposy{y2-#1}%
+%   \foobarlength=\zposy{y2-#1}sp%
+%   \ifdim\dimexpr\foobarlength<140mm
+%   x%
+%   }
+% % ----------------------------------------------------------------------------------------------------------
+% \newcommand{\HRule}{%
+%   \vspace{3mm}%
+%   \hrule%
+%   \vspace{3mm}%
+%   }
+% % ----------------------------------------------------------------------------------------------------------
+% \newcommand{\HRule}{%
+%   \par\nobreak\vspace{0mm}%
+%   \noindent\rule{\linewidth}{0.2mm}\par%
+%   \vspace{0mm}%
+%   }
+
+
+% ----------------------------------------------------------------------------------------------------------
+\newdimen\myLineheight
+\newdimen\myFontsize
+% \myFontsize=3.5mm% too small
+% \myFontsize=4.1667mm
+% space between lines 4.6667mm - 3.8mm = 0.8667mm
+\myFontsize=3.8mm
+\renewcommand{\adjustJzrCjkIdeograph}[1]{\prRaise{-0.125}{\makebox[1.1053\myFontsize]{#1}}} % !!!
+% \myLineheight=4.6667mm
+\myLineheight=3.8mm % reduced to fontsize
+\setlength{\baselineskip}{\myLineheight}
+\setlength{\parskip}{0mm}
+\setlength{\parindent}{0mm}
+% thx to http://www.tug.org/TUGboat/tb28-1/tb88bazargan.pdf for the next:
+\lineskiplimit=-10pt%
+\lineskip=0pt%
+\topskip=\baselineskip%
+
+\newdimen\kwicStrutWidth
+% ..........................................................................................................
+\newdimen\kwicStrutNoneLength
+\newdimen\kwicStrutNoneHeight
+\newdimen\kwicStrutNoneDepth
+\setlength{\kwicStrutNoneLength}{1.18\myFontsize}
+\setlength{\kwicStrutNoneHeight}{0.7\kwicStrutNoneLength}
+\setlength{\kwicStrutNoneDepth}{\kwicStrutNoneLength-\kwicStrutNoneHeight}
+% ..........................................................................................................
+\newdimen\kwicStrutTopLength
+\newdimen\kwicStrutTopHeight
+\newdimen\kwicStrutTopDepth
+\setlength{\kwicStrutTopLength}{1.18\myFontsize}
+% \setlength{\kwicStrutTopLength}{1.2\myFontsize-0.155mm}
+\setlength{\kwicStrutTopHeight}{0.7\kwicStrutTopLength}
+\setlength{\kwicStrutTopDepth}{\kwicStrutTopLength-\kwicStrutTopHeight}
+% ..........................................................................................................
+\newdimen\kwicStrutDoubleTopLength
+\newdimen\kwicStrutDoubleTopHeight
+\newdimen\kwicStrutDoubleTopDepth
+\setlength{\kwicStrutDoubleTopLength}{2.85\myFontsize}
+% \setlength{\kwicStrutDoubleTopLength}{2.4\myFontsize-0.155mm}
+\setlength{\kwicStrutDoubleTopHeight}{0.5\kwicStrutDoubleTopLength}
+\setlength{\kwicStrutDoubleTopDepth}{\kwicStrutDoubleTopLength-\kwicStrutDoubleTopHeight}
+% ..........................................................................................................
+\kwicStrutWidth=0mm
+% \newcommand{\kwicStrut}{{\color{blue}\vrule height\kwicStrutHeight width\kwicStrutWidth depth\kwicStrutDepth}}
+\newcommand{\kwicStrutNone}{{\color{blue}\vrule height\kwicStrutNoneHeight width\kwicStrutWidth depth\kwicStrutNoneDepth}}
+\newcommand{\kwicStrutTop}{{\color{blue}\vrule height\kwicStrutTopHeight width\kwicStrutWidth depth\kwicStrutTopDepth}}
+\newcommand{\kwicStrutDoubleTop}{{\color{blue}\vrule height\kwicStrutDoubleTopHeight width\kwicStrutWidth depth\kwicStrutDoubleTopDepth}}
+% \newcommand{\kwicStrutTop}{{\color{blue}\vrule height\kwicStrutHeight width\kwicStrutWidth depth\kwicStrutDepth}}
+% \newcommand{\kwicStrutBottom}{{\color{blue}\vrule height\kwicStrutHeight width\kwicStrutWidth depth\kwicStrutDepth}}
+
+% ----------------------------------------------------------------------------------------------------------
+% http://ftp.fernuni-hagen.de/ftp-dir/pub/mirrors/www.ctan.org/macros/latex/contrib/mdframed/mdframed.pdf
+% use updated packagate from
+% https://github.com/marcodaniel/mdframed
+\usepackage[framemethod=tex]{/Volumes/Storage/downloads/mdframed-master/mdframed} %
+% ..........................................................................................................
+\mdfdefinestyle{kwicNone}{%
+  skipabove=0mm,skipbelow=0mm,%
+  leftmargin=0mm,rightmargin=0mm,%
+  innerleftmargin=0mm,innerrightmargin=0mm,innertopmargin=0mm,innerbottommargin=0mm,%
+  linewidth=0.155mm,innerlinewidth=0mm,middlelinewidth=0mm,outerlinewidth=0mm,roundcorner=0mm,%
+  topline=true,rightline=false,leftline=false,bottomline=false,%
+  backgroundcolor=white!0,
+  linecolor=white%
+  }
+% ..........................................................................................................
+\mdfdefinestyle{kwicTop}{%
+  skipabove=0mm,skipbelow=0mm,%
+  leftmargin=0mm,rightmargin=0mm,%
+  innerleftmargin=0mm,innerrightmargin=0mm,innertopmargin=0mm,innerbottommargin=0mm,%
+  linewidth=0.155mm,innerlinewidth=0mm,middlelinewidth=0mm,outerlinewidth=0mm,roundcorner=0mm,%
+  topline=true,rightline=false,leftline=false,bottomline=false,%
+  backgroundcolor=white!0,
+  linecolor=black%
+  }
+% ..........................................................................................................
+\mdfdefinestyle{kwicDoubleTop}{%
+  skipabove=0mm,skipbelow=0mm,%
+  leftmargin=0mm,rightmargin=0mm,%
+  innerleftmargin=0mm,innerrightmargin=0mm,innertopmargin=0mm,innerbottommargin=0mm,%
+  linewidth=0.155mm,innerlinewidth=0mm,middlelinewidth=0mm,outerlinewidth=0mm,roundcorner=0mm,%
+  topline=true,rightline=false,leftline=false,bottomline=false,%
+  % backgroundcolor=black!10!yellow!30,
+  backgroundcolor=white,
+  backgroundcolor=white!0,
+  linecolor=white%
+  }
+% ..........................................................................................................
+\mdfdefinestyle{kwicBottom}{%
+  skipabove=0mm,skipbelow=0mm,%
+  leftmargin=0mm,rightmargin=0mm,%
+  innerleftmargin=0mm,innerrightmargin=0mm,innertopmargin=0mm,innerbottommargin=0mm,%
+  linewidth=0.155mm,innerlinewidth=0mm,middlelinewidth=0mm,outerlinewidth=0mm,roundcorner=0mm,%
+  topline=false,rightline=false,leftline=false,bottomline=true,%
+  backgroundcolor=white!0,
+  linecolor=black%
+  }
+
+% ==========================================================================================================
+% CJK Glyph Bullets
+% ----------------------------------------------------------------------------------------------------------
+\usepackage{tikz}
+\usepackage{adjustbox}
+% ..........................................................................................................
+\usepackage[user,abspage,savepos]{zref}
+\newcommand{\kwicSavePage}[2]{%
+  \zlabel{kwic-page-#1-#2}%\zsaveposy{y-#1}%
+  % \node{f}{#1,\zref[abspage]{page-#1},\prFontSizePt,\zposy{y-#1}}%
+  % \node{f}{#1,0,\prFontSizePt,\zposy{y-#1}}%
+  }
+% ..........................................................................................................
+\newdimen\kwicStrutCircleLength
+\newdimen\kwicStrutCircleHeight
+\newdimen\kwicStrutCircleDepth
+\newdimen\kwicStrutCircleFontsize
+\setlength{\kwicStrutCircleLength}{1.25\myFontsize}
+\setlength{\kwicStrutCircleHeight}{0.7\kwicStrutCircleLength}
+\setlength{\kwicStrutCircleDepth}{\kwicStrutCircleLength-\kwicStrutCircleHeight}
+\setlength{\kwicStrutCircleFontsize}{1.0\kwicStrutCircleLength}
+\newcommand{\kwicStrutCircle}{{\color{blue}\vrule height\kwicStrutCircleHeight width\kwicStrutWidth depth\kwicStrutCircleDepth}}
+% ..........................................................................................................
+\newcommand*\kwicCircled[2]{%
+  \makebox[12.5mm]{\kwicStrutDoubleTop\smash{%
+  \begin{adjustbox}{trim=-2.25mm 0mm 0mm 0}%
+  % \begin{adjustbox}{trim=8.5mm 0mm 0mm 0}%
+    \tikz[baseline=(char.base),line width=0.1mm,#1]{%
+      \draw (-14.5mm,-3.0mm) -- (14.0mm,-3.0mm);
+      \draw (-14.5mm,-2.5mm) -- (14.0mm,-2.5mm);
+      \draw (-14.5mm,-2.0mm) -- (14.0mm,-2.0mm);
+      \draw (-14.5mm,-1.5mm) -- (14.0mm,-1.5mm);
+      \draw (-14.5mm,-1.0mm) -- (14.0mm,-1.0mm);
+      \draw (-14.5mm,-0.5mm) -- (14.0mm,-0.5mm);
+      \draw (-14.5mm,+0.0mm) -- (14.0mm,+0.0mm);
+      \draw (-14.5mm,+0.5mm) -- (14.0mm,+0.5mm);
+      \draw (-14.5mm,+1.0mm) -- (14.0mm,+1.0mm);
+      \draw (-14.5mm,+1.5mm) -- (14.0mm,+1.5mm);
+      \draw (-14.5mm,+2.0mm) -- (14.0mm,+2.0mm);
+      \draw (-14.5mm,+2.5mm) -- (14.0mm,+2.5mm);
+      \draw (-14.5mm,+3.0mm) -- (14.0mm,+3.0mm);
+      \draw[draw=black](-14.5mm,-3.5mm) -- (25.25mm,-3.5mm);
+      \draw[draw=black](-14.5mm,-3.5mm) -- (-14.5mm,+3.5mm);
+      \draw[draw=black](+14.0mm,-3.5mm) -- (+14.0mm,+3.5mm);
+      \draw[draw=black](-14.5mm,+3.5mm) -- (25.25mm,+3.5mm);
+      \draw[draw=black](21.35mm,-3.4mm) -- (21.35mm,+3.4mm);
+      \node[shape=circle,draw,inner sep=0.55mm,black,fill=white] (char) {%
+      \makebox[\kwicStrutCircleLength]{\kwicStrutCircle\smash{{%
+        \fontsize{\kwicStrutCircleFontsize}{\kwicStrutCircleFontsize}%
+        \prPushRaise{0.03}{-0.05}{#2}}%
+        }}}%
+  ;}%
+  \end{adjustbox}%
+  }}}
+
+% \AtBeginShipout{%
+%   \checkoddpage%
+%   \ifoddpage%
+%    ODD
+%   \AtBeginShipoutUpperLeft{background material}
+%   \else%
+%   EVEN
+%   \fi%
+%   }%
+% \AtBeginShipoutNext{%
+%   \checkoddpage%
+%   \ifoddpage%
+%   NEXTODD
+%   \else%
+%   NEXTEVEN
+%   \fi%
+%   }%
+% \AtBeginShipoutFirst{%
+%   \checkoddpage%
+%   \ifoddpage%
+%   FIRSTODD
+%   \else%
+%   FIRSTEVEN
+%   \fi%
+%   }%
+
+
+% % ..........................................................................................................
+% \newcommand*\kwicCircled[2]{%
+%   \makebox[12.5mm]{\kwicStrutDoubleTop\smash{%
+%   \begin{adjustbox}{trim=-2.25mm 0mm 0mm 0}%
+%   % \begin{adjustbox}{trim=8.5mm 0mm 0mm 0}%
+%     \tikz[baseline=(char.base),line width=0.08mm,#1]{%
+%       \draw[draw=black](-14.5mm,-4.0mm) -- (25.25mm,-4.0mm);
+%       \draw[draw=black](-14.5mm,-4.0mm) -- (-14.5mm,+4.0mm);
+%       \draw[draw=black](+14.0mm,-4.0mm) -- (+14.0mm,+4.0mm);
+%       \draw (-14.5mm,-3.5mm) -- (14.0mm,-3.5mm);
+%       \draw (-14.5mm,-3.0mm) -- (14.0mm,-3.0mm);
+%       \draw (-14.5mm,-2.5mm) -- (14.0mm,-2.5mm);
+%       \draw (-14.5mm,-2.0mm) -- (14.0mm,-2.0mm);
+%       \draw (-14.5mm,-1.5mm) -- (14.0mm,-1.5mm);
+%       \draw (-14.5mm,-1.0mm) -- (14.0mm,-1.0mm);
+%       \draw (-14.5mm,-0.5mm) -- (14.0mm,-0.5mm);
+%       \draw (-14.5mm,+0.0mm) -- (14.0mm,+0.0mm);
+%       \draw (-14.5mm,+0.5mm) -- (14.0mm,+0.5mm);
+%       \draw (-14.5mm,+1.0mm) -- (14.0mm,+1.0mm);
+%       \draw (-14.5mm,+1.5mm) -- (14.0mm,+1.5mm);
+%       \draw (-14.5mm,+2.0mm) -- (14.0mm,+2.0mm);
+%       \draw (-14.5mm,+2.5mm) -- (14.0mm,+2.5mm);
+%       \draw (-14.5mm,+3.0mm) -- (14.0mm,+3.0mm);
+%       \draw (-14.5mm,+3.5mm) -- (14.0mm,+3.5mm);
+%       \draw[draw=black](-14.5mm,+4.0mm) -- (25.25mm,+4.0mm);
+%       \draw[draw=black](21.35mm,-3.9mm) -- (21.35mm,+3.9mm);
+%       \node[shape=circle,draw,inner sep=0.75mm,black,fill=white] (char) {%
+%       \makebox[\kwicStrutCircleLength]{\kwicStrutCircle\smash{{%
+%         \fontsize{\kwicStrutCircleFontsize}{\kwicStrutCircleFontsize}%
+%         #2}%
+%         }}}%
+%   ;}%
+%   \end{adjustbox}%
+%   }}}
+
+% ----------------------------------------------------------------------------------------------------------
+\usepackage{multicol}
+\setlength{\columnsep}{3mm}
+\setlength\columnseprule{0.155mm}
+
+% ..........................................................................................................
+\usepackage[
+  % asymmetric,% see http://tex.stackexchange.com/a/42051/28067
+  driver=xetex,
+  % showframe,%
+  % twoside,
+  left=21mm,%
+  right=21mm,%
+  top=21mm,%
+  bottom=14mm,%
+  headsep=5mm,%
+  headheight=5mm,%
+  footskip=5mm,%
+  marginparsep=0mm,%
+  marginparwidth=0mm,%
+  includehead=true,%
+  includefoot=true,%
+  includemp=false,%
+  paperwidth=210mm,%
+  paperheight=297mm,%
+  ]{geometry}
+% ..........................................................................................................
+% \usepackage{pagegrid}\pagegridsetup{top-left,step=1mm,arrows=false}
+% \pagegridsetup{top-left,step=4.6667mm,arrows=false}
+% % \pagegridsetup{top-left,step=\myLineheight,arrows=false}
+% % \pagegridsetup{top-left,step=7mm,arrows=false}
+
+% ----------------------------------------------------------------------------------------------------------
+\let\footruleskip\undefined\usepackage{fancyhdr}
+\usepackage{fix2col}% Patch LaTeX's output routine to handle marks correctly with two columns
+\pagestyle{fancy}
+\fancyhead[EL,OR]{\cn{{\jzrFontBiauKai{}字面萬字一覽}}}
+% \fancyhead[EL,OR]{\leftmark}
+% \fancyhead[OL,ER]{\rightmark\cn{{\jzrFontBiauKai{}字面萬字一覽}}}
+\fancyfoot[EL,OR]{\pageNr{\thepage}}
+\fancyfoot[OC,EC]{}
+\fancyfoot[OL,ER]{}
+% \fancyfoot[CL]{!\leftmark!}
+% \fancyfoot[CR]{!\rightmark!}
+% \fancyhf[CLH]{\leftmark}
+% \fancyhf[CRH]{\rightmark}
+\renewcommand{\headrulewidth}{0.1mm}
+\renewcommand{\footrulewidth}{0.1mm}
+% \renewcommand{\chaptermark}[1]{}
+% \renewcommand{\sectionmark}[1]{}
+% \fancyhead[LE,RO]{\leftmark}
+% \fancyhead[LO,RE]{\rightmark}
+% \makepagestyle{jzrdictionary}
+% \makeevenhead{jzrdictionary}{\jzrpagenumber{\thepage}}{}{\cn{萬字一覽}}
+% \makeoddhead{jzrdictionary}{\cn{萬字一覽}}{}{\jzrpagenumber{\thepage}}
+% % \makeevenhead{jzrdictionary}{\jzrpagenumber{\thepage}}{\cn{部件}}{\jzrpagenumber{Dictionary}}
+% % \makeoddhead{jzrdictionary}{\jzrpagenumber{Dictionary}}{部件}{\jzrpagenumber{\thepage}}
+% \pagestyle{jzrdictionary}
+
+% \newcommand{\jzrSizeTwo}[1]{{%
+%   \fontsize{2.5\nominalfontsize}{2.5\jzrDictGridstrutlength}\leading{2.5\jzrDictGridstrutlength}%
+%   #1}}%
+% \newcommand{\jzrSizeThree}[1]{{%
+%   \fontsize{3\nominalfontsize}{3\jzrDictGridstrutlength}\leading{3\jzrDictGridstrutlength}%
+%   #1}}%
+
+
+% \newcommand{\myBigtype}[1]{{%
+%   \setlength{\fboxsep}{0mm}
+%   \setlength{\fboxrule}{0.15mm}
+%   \setlength{\baselineskip}{\myLineheight}
+%   \fontsize{9.333mm}{9.333mm}\leading{9.333mm}
+%   \fbox{\begin{minipage}[c][9.333mm][c]{9.333mm}{#1}\end{minipage}}%
+%   }}%
+\newcommand{\myBigtype}[1]{{%
+  \fontsize{8.4845mm}{8.4845mm}\leading{8.4845mm}\prRaise{0.1}{#1}%
+  }}%
+
+
+% \usepackage{vruler}
+% \setvruler[10mm][0][1][3][0][0mm][0mm][0mm][297mm]
+% defines the start of vertical rulers, where:
+% 〈scale〉is the distance between two consecutive markings on the vruler
+% 〈initial_count〉is the value on the first mark on the ruler
+% 〈step〉is the mark increment
+% 〈digits〉is the number of digits needed for ruler markings
+% 〈mode〉= 0 if each page has the same ruler marking, = 1 otherwise
+% 〈odd_hshift〉is the horizontal shift for odd pages, from the default
+% 〈even_hshift〉is the horizontal shift for even pages, from the default
+% 〈vshift〉is the the vertical shift, from the default value, and
+% 〈height〉is the height of the vertical ruler.
+
+\renewcommand{\usageCode}[1]{{%
+  \setlength{\fboxsep}{0.5mm}%
+  \setlength{\fboxrule}{0.155mm}%
+  \framebox{\jzrFontUbuntu#1}}}
+
+\newcommand{\kwicInfo}[4]{
+  \smash{{%
+    \prPushRaise{0.0}{1}{
+       \setlength{\tabcolsep}{0mm}%
+       \leading{0mm}
+         \begin{tabular}{ p{6.4mm} p{4.0mm} }
+           \prPushRaise{0}{0.775}{\makebox[6.4mm]{\wbf{#1}\hfill{\fontsize{2.5mm}{0mm}\prRaise{0.1}{#3}}}}%
+             & \prPushRaise{0}{0.35}{\makebox[4.0mm]{\hfill\pageNr{#4}}} \\%
+           \wbf{#2} & \\%
+           \end{tabular}%
+    }}}%
+}
+
+% ..........................................................................................................
+% \usepackage[usenames,dvipsnames]{xcolor}
+% \usepackage[usenames,dvipsnames,svgnames,table,x11names]{xcolor}
+% \usepackage{xcolor}
+\newdimen\kwicwrapStrutWidth
+\newdimen\kwicwrapStrutDoubleTopLength
+\newdimen\kwicwrapStrutDoubleTopHeight
+\newdimen\kwicwrapStrutDoubleTopDepth
+\setlength{\kwicwrapStrutDoubleTopLength}{2.85\myFontsize}
+% \setlength{\kwicwrapStrutDoubleTopLength}{2.4\myFontsize-0.155mm}
+\setlength{\kwicwrapStrutDoubleTopHeight}{0.5\kwicwrapStrutDoubleTopLength}
+\setlength{\kwicwrapStrutDoubleTopDepth}{\kwicwrapStrutDoubleTopLength-\kwicwrapStrutDoubleTopHeight}
+% ..........................................................................................................
+\kwicwrapStrutWidth=0mm
+\newcommand{\kwicwrapStrutDoubleTop}{{\color{blue}\vrule height\kwicwrapStrutDoubleTopHeight width\kwicwrapStrutWidth depth\kwicwrapStrutDoubleTopDepth}}
+\newdimen\kwicwrapStrutCircleLength
+\newdimen\kwicwrapStrutCircleHeight
+\newdimen\kwicwrapStrutCircleDepth
+\newdimen\kwicwrapStrutCircleFontsize
+\setlength{\kwicwrapStrutCircleLength}{1.25\myFontsize}
+\setlength{\kwicwrapStrutCircleHeight}{0.7\kwicwrapStrutCircleLength}
+\setlength{\kwicwrapStrutCircleDepth}{\kwicwrapStrutCircleLength-\kwicwrapStrutCircleHeight}
+\setlength{\kwicwrapStrutCircleFontsize}{1.0\kwicwrapStrutCircleLength}
+\newcommand{\kwicwrapStrutCircle}{{\color{blue}\vrule height\kwicwrapStrutCircleHeight width\kwicwrapStrutWidth depth\kwicwrapStrutCircleDepth}}
+\newcommand*\kwicwrapCircled[1]{%
+  \makebox[12.5mm]{\kwicwrapStrutDoubleTop\smash{%
+  \begin{adjustbox}{trim=-2.25mm 0mm 0mm 0}%
+  % \begin{adjustbox}{trim=8.5mm 0mm 0mm 0}%
+    \tikz[baseline=(char.base),line width=0.1mm]{%
+      \node[shape=circle,draw,inner sep=0.55mm,jzrBlue,fill=jzrBlue] (char) {%
+      \makebox[\kwicwrapStrutCircleLength]{\kwicwrapStrutCircle\smash{{%
+        \color{white}\fontsize{\kwicwrapStrutCircleFontsize}{\kwicwrapStrutCircleFontsize}%
+        \prPushRaise{0.03}{-0.05}{#1}}%
+        }}}%
+  ;}%
+  \end{adjustbox}%
+  }}}
+
+\newcommand{\kwicTopStrut}{\vrule width 0mm height 5mm}
+\newcommand{\kwicBottomStrut}{\vrule width 0mm depth 3mm}
+
+\begin{document}
+\fontsize{\myFontsize}{\myLineheight}\leading{\myLineheight}\selectfont%
+% \begin{multicols}{4}
+% \sbDummy
+% \begingroup\setlength{\baselineskip}{0mm}\setlength{\parskip}{0mm}\vskip 1mm\endgroup
+#{content}
+
+% \end{multicols}
+\end{document}

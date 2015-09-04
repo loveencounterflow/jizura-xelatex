@@ -29,7 +29,11 @@ route_of_postscript       = '../tex-inputs/jzr2014-postscript.tex'
 #
 #...........................................................................................................
 @glyph_tag_by_rsg         =
+  'u-latn':                 TEX.make_command 'latin'
+  'u-latn-1':               TEX.make_command 'latin'
   'u-cjk':                  TEX.make_command 'cn'
+  'u-halfull':              TEX.make_command 'cn'
+  'u-dingb':                TEX.make_command 'cn'
   'u-cjk-xa':               TEX.make_command 'cnxa'
   'u-cjk-xb':               TEX.make_command 'cnxb'
   'u-cjk-xc':               TEX.make_command 'cnxc'
@@ -42,9 +46,12 @@ route_of_postscript       = '../tex-inputs/jzr2014-postscript.tex'
   'u-cjk-strk':             TEX.make_command 'cnstrk'
   'u-pua':                  TEX.make_command 'cnjzr'
   'jzr-fig':                TEX.make_command 'cnjzr'
+  'u-cjk-kata':             TEX.make_command 'ka'
+  'u-cjk-hira':             TEX.make_command 'hi'
+  'u-hang-syl':             TEX.make_command 'hg'
   #.........................................................................................................
-  ### TAINT kludge to accommodate for the fact that Sun-ExtA is missing a few characters: ###
-  'xxx':                    TEX.make_command 'cnextra'
+  # ### TAINT kludge to accommodate for the fact that Sun-ExtA is missing a few characters: ###
+  # 'xxx':                    TEX.make_command 'cnextra'
 
 #...........................................................................................................
 @stacked_fncr             = TEX.make_multicommand 'fncr', 2
@@ -71,67 +78,28 @@ route_of_postscript       = '../tex-inputs/jzr2014-postscript.tex'
 # @_new_page                = ( TEX.make_loner 'newpage' )()
 @new_page                 = ( TEX.make_loner 'clearpage' )()
 
-#-----------------------------------------------------------------------------------------------------------
-@_glyph_tag_from_chr_info = ( chr_info ) ->
-  ### TAINT not well written ###
-  if chr_info[ 'csg' ] is 'u' and 0x9fbc <= chr_info[ 'cid' ] <= 0x9fcc
-    rsg = 'xxx'
-  else
-    rsg = chr_info[ 'rsg' ]
-  tag = @glyph_tag_by_rsg[ rsg ]
-  unless tag?
-    warn "unknown RSG #{rpr rsg}"
-    return chr_info[ 'chr' ]
-  return tag chr_info[ 'chr' ]
 
 ############################################################################################################
 # HELPERS
 #===========================================================================================================
-@tag_from_chr = ( chr ) ->
+@tag_from_chr = ( glyph_styles, chr ) ->
   ### TAINT not well written ###
-  chr_info  = CHR.analyze chr, input: 'xncr'
-  rsg       = chr_info[ 'rsg' ]
-  if rsg is 'jzr-fig'
-    # return TEX.raw """\\cnjzr{\\symbol{"#{chr_info[ 'cid' ].toString 16}}}"""
-    return TEX.raw """\\cnjzr{\\symbol{#{chr_info[ 'cid' ]}}}"""
-  else
-    return @_glyph_tag_from_chr_info chr_info
+  chr_info    = CHR.analyze chr, input: 'xncr'
+  { chr
+    fncr
+    rsg   }   = chr_info
+  #.........................................................................................................
+  return TEX.raw R if ( R = glyph_styles[ chr ] )?
+  return TEX.raw """\\cnjzr{#{chr_info[ 'uchr' ]}}""" if rsg is 'jzr-fig'
+  #.........................................................................................................
+  unless ( tag = @glyph_tag_by_rsg[ rsg ] )?
+    warn "unknown RSG #{rpr rsg}: #{fncr} #{chr}"
+    return chr_info[ 'chr' ]
+  return tag chr_info[ 'chr' ]
 
-  # #.......................................................................................................
-  # if TEXT.starts_with glyph, '&'
-  #   [ ignore
-  #     rsg
-  #     cid_hex ] = glyph.match ///^ & ( [a-z]+ ) \#x ( [0-9a-fA-F]+ ) ; $///
-  #   # log rsg, cid_hex
-  #   cid         = new_integer cid_hex, 16
-  #   sfncr       = "jzr/#{cid_hex}"
-  #   fncr        = "jzr/#{cid_hex}"
-  #   glyph       = UNICODE.chr_from_cid  cid
-  # #.......................................................................................................
-  # else
-  #   cid         = CHR.as_cid            glyph
-  #   rsg         = CHR.rsg_from_cid      cid
-  #   cid_hex     = NUMBER.as_hexadecimal cid, width: 5
-  #   sfncr       = CHR.as_sfncr          cid
-  #   fncr        = CHR.as_fncr           cid
-  # #.......................................................................................................
-  # R =
-  #   'glyph':    glyph
-  #   'rsg':      rsg
-  #   'cid-hex':  cid_hex
-  #   'cid':      cid
-  #   'sfncr':    sfncr
-  #   'fncr':     fncr
-  # #.......................................................................................................
-  # tag = glyph_tag_by_rsg[ rsg ]
-  # #.......................................................................................................
-  # if tag?
-  #   R[ 'tex-tag' ] = tag glyph
-  # else
-  #   R[ 'tex-tag' ] = ᵡmissing glyph
-  #   log red "no tag found for #{fncr} #{glyph}"
-  # #.......................................................................................................
-  # return R
+#-----------------------------------------------------------------------------------------------------------
+@tag_rpr_from_chr = ( glyph_styles, chr ) ->
+  return TEX.rpr @tag_from_chr glyph_styles, chr
 
 #-----------------------------------------------------------------------------------------------------------
 @py = ( text ) ->

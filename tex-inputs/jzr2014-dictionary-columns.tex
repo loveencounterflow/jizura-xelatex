@@ -1,0 +1,206 @@
+
+
+
+% ==========================================================================================================
+%
+% 8888888b.  8888888  .d8888b.  88888888888 8888888  .d88888b.  888b    888        d8888 8888888b.  Y88b   d88P
+% 888  "Y88b   888   d88P  Y88b     888       888   d88P" "Y88b 8888b   888       d88888 888   Y88b  Y88b d88P
+% 888    888   888   888    888     888       888   888     888 88888b  888      d88P888 888    888   Y88o88P
+% 888    888   888   888            888       888   888     888 888Y88b 888     d88P 888 888   d88P    Y888P
+% 888    888   888   888            888       888   888     888 888 Y88b888    d88P  888 8888888P"      888
+% 888    888   888   888    888     888       888   888     888 888  Y88888   d88P   888 888 T88b       888
+% 888  .d88P   888   Y88b  d88P     888       888   Y88b. .d88P 888   Y8888  d8888888888 888  T88b      888
+% 8888888P"  8888888  "Y8888P"      888     8888888  "Y88888P"  888    Y888 d88P     888 888   T88b     888
+%
+%  .d8888b.   .d88888b.  888      888     888 888b     d888 888b    888  .d8888b.
+% d88P  Y88b d88P" "Y88b 888      888     888 8888b   d8888 8888b   888 d88P  Y88b
+% 888    888 888     888 888      888     888 88888b.d88888 88888b  888 Y88b.
+% 888        888     888 888      888     888 888Y88888P888 888Y88b 888  "Y888b.
+% 888        888     888 888      888     888 888 Y888P 888 888 Y88b888     "Y88b.
+% 888    888 888     888 888      888     888 888  Y8P  888 888  Y88888       "888
+% Y88b  d88P Y88b. .d88P 888      Y88b. .d88P 888   "   888 888   Y8888 Y88b  d88P
+%  "Y8888P"   "Y88888P"  88888888  "Y88888P"  888       888 888    Y888  "Y8888P"
+%
+% ==========================================================================================================
+% \renewcommand\cn{\jzrFontCwKai}
+% \renewcommand\cn{\jzrFontCwHei}
+% \renewcommand\cn{\jzrFontCwFangsong}
+% \renewcommand\cn{\jzrFontCwMing}
+% ----------------------------------------------------------------------------------------------------------
+\usepackage{cxltx}
+\usepackage{cxltx-style-hyphenation-tolerance}
+\usepackage{cxltx-style-oddeven}
+\usepackage{cxltx-style-position-absolute}
+\usepackage{cxltx-style-pushraise}
+\usepackage{cxltx-style-smashbox}
+\usepackage{cxltx-style-solarized}
+% \usepackage{cxltx-style-trm}
+% \usepackage{picinpar}
+\usepackage{/Volumes/Storage/downloads/picins/picins}
+\pichskip{1mm}% horizontal distance between midashi glyph and entry text
+
+% ----------------------------------------------------------------------------------------------------------
+% \usepackage[most]{tcolorbox}
+% \newcommand*{\MinimumHeight}{5.0cm}%
+% \newtcolorbox{MyEnvironment}[1][]{%
+%   fit height from={\MinimumHeight} to {\textheight},
+%   width=\columnwidth,
+%   enhanced,
+%   colback=yellow!100,
+%   colframe=transparent,
+%   % colbacktitle=brown!25,
+%   % coltitle=black,
+%   boxrule=0pt,
+%   titlerule=0pt,
+%   arc=0pt,
+%   outer arc=0pt,
+%   % fonttitle=\bfseries,
+%   left=0mm,
+%   right=0mm,
+%   top=0mm,
+%   bottom=0mm,
+%   toptitle=0mm,
+%   bottomtitle=0mm}
+% with many thanks to Dave Carlisle @ http://tex.stackexchange.com/a/215445/28067
+\newcommand{\minheightparbox}[1]{%
+  \sbox{0}{\hbadness=10001\parbox{\columnwidth}{\hfuzz=\maxdimen{}#1}}%
+  \ifdim\dimexpr\ht0+\dp0<14mm%
+  \dp0\dimexpr14mm-\ht0\fi%
+  % \fbox{\usebox{0}}%
+  \usebox{0}%
+}
+\newdimen\foobarlength
+\newcommand{\foobar}[1]{%
+  \zsaveposy{y2-#1}%
+  \foobarlength=\zposy{y2-#1}sp%
+  \ifdim\dimexpr\foobarlength<140mm
+  x%
+}
+
+% ----------------------------------------------------------------------------------------------------------
+\usepackage{multicol}
+\setlength{\columnsep}{3mm}
+\setlength\columnseprule{0.15mm}
+
+% ----------------------------------------------------------------------------------------------------------
+\usepackage[user,abspage,savepos]{zref}
+\newcommand{\jzrEntryYPosition}[1]{%
+  \sbDummy\zlabel{page-#1}\zsaveposy{y-#1}%
+  % \node{f}{#1,\zref[abspage]{page-#1},\prFontSizePt,\zposy{y-#1}}%
+  % \node{f}{#1,0,\prFontSizePt,\zposy{y-#1}}%
+  }
+
+% ----------------------------------------------------------------------------------------------------------
+\newdimen\myLineheight
+\newdimen\myFontsize
+% \myFontsize=3.5mm% too small
+\myFontsize=4.1667mm
+\myLineheight=4.6667mm
+\setlength{\baselineskip}{\myLineheight}
+\setlength{\parskip}{0mm}
+\setlength{\parindent}{0mm}
+% thx to http://www.tug.org/TUGboat/tb28-1/tb88bazargan.pdf for the next:
+\lineskiplimit=-10pt%
+\lineskip=0pt%
+\topskip=\baselineskip%
+% ..........................................................................................................
+% \usepackage[
+%   % asymmetric,% see http://tex.stackexchange.com/a/42051/28067
+%   driver=xetex,
+%   % showframe,%
+%   % twoside,
+%   left=21mm,%
+%   right=21mm,%
+%   top=21mm,%
+%   bottom=14mm,%
+%   headsep=0mm,%
+%   headheight=0mm,%
+%   footskip=0mm,%
+%   marginparsep=0mm,%
+%   marginparwidth=0mm,%
+%   includehead=false,%
+%   includefoot=false,%
+%   includemp=false,%
+%   paperwidth=210mm,%
+%   paperheight=297mm,%
+%   ]{geometry}
+\usepackage[
+  % asymmetric,% see http://tex.stackexchange.com/a/42051/28067
+  driver=xetex,
+  % showframe,%
+  % twoside,
+  left=1mm,%
+  right=1mm,%
+  top=1mm,%
+  bottom=1mm,%
+  headsep=0mm,%
+  headheight=0mm,%
+  footskip=0mm,%
+  marginparsep=0mm,%
+  marginparwidth=0mm,%
+  includehead=false,%
+  includefoot=false,%
+  includemp=false,%
+  paperwidth=170mm,%
+  paperheight=249mm,%
+  ]{geometry}
+% ..........................................................................................................
+% \usepackage{pagegrid}
+% \pagegridsetup{top-left,step=1mm,arrows=false}
+% % \pagegridsetup{top-left,step=\myLineheight,arrows=false}
+% % \pagegridsetup{top-left,step=7mm,arrows=false}
+
+% \newcommand{\jzrSizeTwo}[1]{{%
+%   \fontsize{2.5\nominalfontsize}{2.5\jzrDictGridstrutlength}\leading{2.5\jzrDictGridstrutlength}%
+%   #1}}%
+% \newcommand{\jzrSizeThree}[1]{{%
+%   \fontsize{3\nominalfontsize}{3\jzrDictGridstrutlength}\leading{3\jzrDictGridstrutlength}%
+%   #1}}%
+
+
+% \newcommand{\myBigtype}[1]{{%
+%   \setlength{\fboxsep}{0mm}
+%   \setlength{\fboxrule}{0.15mm}
+%   \setlength{\baselineskip}{\myLineheight}
+%   \fontsize{9.333mm}{9.333mm}\leading{9.333mm}
+%   \fbox{\begin{minipage}[c][9.333mm][c]{9.333mm}{#1}\end{minipage}}%
+%   }}%
+\newcommand{\myBigtype}[1]{{%
+  \fontsize{8.4845mm}{8.4845mm}\leading{8.4845mm}\prRaise{0.1}{#1}%
+  }}%
+
+% \makepagestyle{jzrdictionary}
+% \makeevenhead{jzrdictionary}{\jzrpagenumber{\thepage}}{}{\cn{萬字一覽}}
+% \makeoddhead{jzrdictionary}{\cn{萬字一覽}}{}{\jzrpagenumber{\thepage}}
+% \makeevenhead{jzrdictionary}{\jzrpagenumber{\thepage}}{\cn{部件}}{\jzrpagenumber{Dictionary}}
+% \makeoddhead{jzrdictionary}{\jzrpagenumber{Dictionary}}{部件}{\jzrpagenumber{\thepage}}
+% \pagestyle{jzrdictionary}
+\pagestyle{empty}
+
+% \usepackage{vruler}
+% \setvruler[10mm][0][1][3][0][0mm][0mm][0mm][297mm]
+% defines the start of vertical rulers, where:
+% 〈scale〉is the distance between two consecutive markings on the vruler
+% 〈initial_count〉is the value on the first mark on the ruler
+% 〈step〉is the mark increment
+% 〈digits〉is the number of digits needed for ruler markings
+% 〈mode〉= 0 if each page has the same ruler marking, = 1 otherwise
+% 〈odd_hshift〉is the horizontal shift for odd pages, from the default
+% 〈even_hshift〉is the horizontal shift for even pages, from the default
+% 〈vshift〉is the the vertical shift, from the default value, and
+% 〈height〉is the height of the vertical ruler.
+
+\renewcommand{\usageCode}[1]{{%
+  \setlength{\fboxsep}{0.5mm}%
+  \setlength{\fboxrule}{0.15mm}%
+  \framebox{\jzrFontUbuntu#1}}}
+
+\begin{document}
+\fontsize{\myFontsize}{\myLineheight}\leading{\myLineheight}\selectfont%
+% \begin{multicols}{3}
+% \sbDummy
+% \begingroup\setlength{\baselineskip}{0mm}\setlength{\parskip}{0mm}\vskip 1mm\endgroup
+#{content}
+
+% \end{multicols}
+\end{document}
