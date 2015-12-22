@@ -57,7 +57,8 @@
 \newfontfamily\jzrFontGaraqmondSC{EB Garamond 12 Regular SmallCaps}
 % ..........................................................................................................
 \newfontfamily\jzrFontOptima[Mapping=tex-text]{Optima Regular}
-% \newfontfamily\jzrFontGeorgia[Mapping=tex-text]{Georgia}
+% \newfontfamily\jzrFontSourceCodePro[Scale=0.8]{Source Code Pro Medium}
+\newfontfamily\jzrFontSourceCodePro[Scale=0.8]{Source Code Pro}
 % ..........................................................................................................
 \newfontfamily\jzrFontUbuntuBold{Ubuntu Bold}
 \newfontfamily\jzrFontUbuntu[Scale=0.8]{Ubuntu}
@@ -140,6 +141,8 @@
 \newcommand{\adjustHangeul}[1]{\cjkInterchrSpacing\prRaise{-0.125}{#1}}
 % ..........................................................................................................
 \newcommand{\latin}[1]{{\jzrFontGaramond#1}}
+% \newcommand{\setPlainLatin}{\renewcommand{\latin}[1]{{\jzrFontGaramond#1}}}
+% \newcommand{\setCodeLatin}{\renewcommand{\latin}[1]{{\jzrFontSunXA#1}}}
 \newcommand{\py}[1]{{\jzrFontUbuntu#1}}
 \newcommand{\ncr}[1]{{\jzrFontUbuntu#1}}
 \newcommand{\gloss}[1]{{\jzrFontGaramond#1}}
