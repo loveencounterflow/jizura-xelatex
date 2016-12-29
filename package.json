@@ -13,7 +13,7 @@
   "devDependencies": {},
   "dependencies": {
     "cnd": "^1.0.8",
-    "coffeenode-chr": "^1.0.2",
+    "coffeenode-chr": "^1.0.3",
     "coffeenode-multimix": "^0.1.3",
     "coffeenode-tex": "0.0.2",
     "coffeenode-trm": "^0.1.22",
