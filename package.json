@@ -1,6 +1,6 @@
 {
   "name": "jizura-xelatex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library to simplify the generation of XeLaTeX code for the Jizura Dictionary",
   "author": {
     "name": "loveencounterflow",
